@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEditorInternal;
 
+[ExecuteInEditMode]
 public class WindowVessels : EditorWindow
 {
     List<Object> _objects = new List<Object>();

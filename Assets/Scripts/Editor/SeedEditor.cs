@@ -60,7 +60,7 @@ public class SeedEditor : Editor
     private void FixValues()
     {
         
-    }   
+    }
 
     void OnSceneGUI()
     {
@@ -93,6 +93,7 @@ public class SeedEditor : Editor
             pathsSaved.objectsToInstantiate = _target.mapItems;
         }
     }
+
     void ShowPreview()
     {
         var _preview = AssetPreview.GetAssetPreview(pathsSaved.objectsToInstantiate[_target.selectedIndex]);
@@ -108,8 +109,7 @@ public class SeedEditor : Editor
     }
 
     void RestartMap()
-    {
-        
+    {       
 
         if (!restartMap && GUI.Button(new Rect(20, 20, buttonWidth, buttonHeight), "Restart Map"))
         {
