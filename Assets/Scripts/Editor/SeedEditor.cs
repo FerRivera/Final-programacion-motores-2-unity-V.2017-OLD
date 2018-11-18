@@ -23,8 +23,6 @@ public class SeedEditor : Editor
     public bool restartMap = false;
     public bool saveMap = false;
 
-    public static bool vesselsWindowOpened;
-
     void OnEnable()
     {
         _target = (Seed)target;
@@ -64,9 +62,6 @@ public class SeedEditor : Editor
 
     void OnSceneGUI()
     {
-        if (Application.isPlaying)
-            return;
-
         Handles.BeginGUI();
 
         var addValue = 30 / Vector3.Distance(Camera.current.transform.position, _target.transform.position);
@@ -109,15 +104,9 @@ public class SeedEditor : Editor
     }
 
     void RestartMap()
-    {       
-
+    {
         if (!restartMap && GUI.Button(new Rect(20, 20, buttonWidth, buttonHeight), "Restart Map"))
-        {
-            if (vesselsWindowOpened || pathsSaved == null || pathsSaved.paths == null)
-            {
-                throw new Exception("Change the focus from Vessels window to another to restart the map");
-            }
-                
+        {                
             restartMap = true;
         }
 

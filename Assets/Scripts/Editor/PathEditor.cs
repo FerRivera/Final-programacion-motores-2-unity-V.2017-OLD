@@ -24,9 +24,6 @@ public class PathEditor : Editor
 
     public override void OnInspectorGUI()
     {
-        //if (Application.isPlaying)
-        //     return;
-
         ShowValues();
 
         FixValues();
@@ -36,9 +33,6 @@ public class PathEditor : Editor
 
     void OnSceneGUI()
     {
-        if (Application.isPlaying)
-            return;
-
         Handles.BeginGUI();        
 
         SetAsActualPath();
@@ -88,11 +82,26 @@ public class PathEditor : Editor
 
         _seed = GameObject.FindGameObjectWithTag("Seed").GetComponent<Seed>();
 
-        _target.currentIndex = EditorGUILayout.Popup("Path to create", _target.currentIndex, pathsSaved.objectsToInstantiate.Select(x => x.name).ToArray());
+        _target.currentIndex = EditorGUILayout.Popup("Actual type", _target.currentIndex, pathsSaved.objectsToInstantiate.Select(x => x.name).ToArray());
 
+        ShowPreview();
         //_target.id = EditorGUILayout.IntField("ID", _target.id);
 
         SwitchType();
+    }
+
+    void ShowPreview()
+    {
+        var _preview = AssetPreview.GetAssetPreview(pathsSaved.objectsToInstantiate[_target.currentIndex]);
+
+        if (_preview != null)
+        {
+            GUILayout.BeginHorizontal();
+            GUI.DrawTexture(GUILayoutUtility.GetRect(150, 150, 150, 150), _preview, ScaleMode.ScaleToFit);
+            GUILayout.Label(pathsSaved.objectsToInstantiate[_target.currentIndex].name);
+            GUILayout.Label(AssetDatabase.GetAssetPath(pathsSaved.objectsToInstantiate[_target.currentIndex]));
+            GUILayout.EndHorizontal();
+        }
     }
 
     void SwitchType()

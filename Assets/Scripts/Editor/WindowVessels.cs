@@ -47,8 +47,8 @@ public class WindowVessels : EditorWindow
             GUILayout.Label(_objects[_vesselsSaved.selectedIndex].name);
             GUILayout.Label(AssetDatabase.GetAssetPath(_objects[_vesselsSaved.selectedIndex]));
             GUILayout.EndHorizontal();
-        }        
-    }
+        }
+    }    
 
     public LayerMask LayerMaskField(string label, LayerMask selected)
     {
@@ -128,18 +128,6 @@ public class WindowVessels : EditorWindow
 
     private void Update()
     {
-        CreateVessel();
-    }
-
-    private void OnFocus()
-    {
-        SeedEditor.vesselsWindowOpened = true;
-        Debug.Log("Vessels window focused");
-    }
-
-    private void OnLostFocus()
-    {
-        SeedEditor.vesselsWindowOpened = false;
-        Debug.Log("Vessels window not focused");
+        //CreateVessel();
     }
 }
